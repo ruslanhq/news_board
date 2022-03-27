@@ -1,6 +1,7 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets, mixins, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.viewsets import GenericViewSet
 
 from api_news.models import Post, UpVote, Comment
 from api_news.permissions import IsOwnerOrReadOnly
@@ -68,3 +69,14 @@ class PostViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_404_NOT_FOUND)
         Comment.objects.create(post=post, author_name=user, content=content)
         return Response(status.HTTP_201_CREATED)
+
+
+class CommentViewSet(
+    mixins.UpdateModelMixin,
+    mixins.ListModelMixin,
+    mixins.DestroyModelMixin,
+    GenericViewSet,
+):
+    queryset = Comment.objects.select_related("post").all()
+    permission_classes = [IsOwnerOrReadOnly]
+    serializer_class = CommentSerializer

@@ -45,3 +45,9 @@ class PostRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         exclude = ("id",)
+
+
+class CommentUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ("content",)

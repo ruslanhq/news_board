@@ -2,12 +2,13 @@ from django.urls import path, include
 
 from rest_framework.routers import DefaultRouter
 
-from api_news.views import PostViewSet
+from api_news.views import PostViewSet, CommentViewSet
 
 app_name = "api_news"
 
 router = DefaultRouter()
 router.register("post", PostViewSet, basename="post")
+router.register("comment", CommentViewSet, basename="comment")
 
 
 urlpatterns = [
