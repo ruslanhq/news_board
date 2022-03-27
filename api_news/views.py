@@ -50,7 +50,7 @@ class PostViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_404_NOT_FOUND)
         except IntegrityError:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        return Response(status=status.HTTP_200_OK)
+        return Response({"status": "OK"}, status=status.HTTP_200_OK)
 
     @action(
         methods=["post"],
@@ -68,7 +68,7 @@ class PostViewSet(viewsets.ModelViewSet):
         except Post.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
         Comment.objects.create(post=post, author_name=user, content=content)
-        return Response(status.HTTP_201_CREATED)
+        return Response(serializer.data, status.HTTP_201_CREATED)
 
 
 class CommentViewSet(
