@@ -7,7 +7,6 @@ The first thing to do is to clone the repository:
 
 ```sh
 $ git clone https://github.com/ruslanhq/news_board.git
-$ cd news_board
 ```
 
 Create a virtual environment to install dependencies in and activate it:

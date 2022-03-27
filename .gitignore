@@ -6,7 +6,7 @@ __pycache__
 db.sqlite3
 media
 news_board/local_settings.py
-staticfiles
+staticfiles/
 
 # Backup files #
 *.bak
