@@ -41,6 +41,7 @@ class PostUpdateSerializer(serializers.ModelSerializer):
 class PostRetrieveSerializer(serializers.ModelSerializer):
     author_name = serializers.StringRelatedField()
     comments = CommentSerializer(many=True, read_only=True)
+    upvotes = serializers.CharField(source="amount_of_upvotes", read_only=True)
 
     class Meta:
         model = Post
